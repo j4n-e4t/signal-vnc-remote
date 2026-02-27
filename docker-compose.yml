@@ -1,0 +1,18 @@
+services:
+  signal-desktop:
+    build: .
+    image: ghcr.io/j4n-e4t/signal-vnc-remote:latest
+    container_name: signal-desktop
+    ports:
+      - "6080:6080"
+    environment:
+      - VNC_PASSWORD=            # Set a password to protect access, leave empty for no auth
+      - SCREEN_WIDTH=1280
+      - SCREEN_HEIGHT=720
+    volumes:
+      - signal-data:/home/signal/.config/Signal
+    shm_size: "1gb"
+    restart: unless-stopped
+
+volumes:
+  signal-data:
