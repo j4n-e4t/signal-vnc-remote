@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signal Desktop Remote</title>
+    <link rel="icon" type="image/x-icon" href="https://signal.org/assets/images/favicon.ico" />
+  </head>
+  <body>
+    <script>
+      const target = new URL('vnc.html', window.location.href);
+      const params = new URLSearchParams(window.location.search);
+
+      if (!params.has('autoconnect')) {
+        params.set('autoconnect', '1');
+      }
+
+      if (!params.has('resize')) {
+        params.set('resize', 'scale');
+      }
+
+      target.search = params.toString();
+      window.location.replace(target.toString());
+    </script>
+  </body>
+</html>

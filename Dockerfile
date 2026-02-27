@@ -43,8 +43,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install noVNC and websockify
 RUN git clone --depth 1 https://github.com/novnc/noVNC.git /opt/noVNC \
-    && git clone --depth 1 https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify \
-    && ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html
+    && git clone --depth 1 https://github.com/novnc/websockify.git /opt/noVNC/utils/websockify
 
 # Install Signal Desktop from official repo
 RUN wget -qO- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > /usr/share/keyrings/signal-desktop-keyring.gpg \
@@ -63,6 +62,7 @@ RUN useradd -m -s /bin/bash signal \
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entrypoint.sh /entrypoint.sh
 COPY openbox-rc.xml /home/signal/.config/openbox/rc.xml
+COPY novnc-index.html /opt/noVNC/index.html
 
 RUN chmod +x /entrypoint.sh \
     && mkdir -p /home/signal/.config/openbox \
