@@ -17,6 +17,9 @@ docker run -d \
 
 Open `http://localhost:6080` in your browser.
 
+By default, the browser client now auto-connects with `resize=scale`, so the Signal desktop view scales to fit your browser window.
+Signal is also launched with fullscreen enabled by default.
+
 ### Using Docker Compose
 
 ```bash
